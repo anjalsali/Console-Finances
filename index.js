@@ -87,6 +87,7 @@ var finances = [
    ["Feb-2017", 671099],
 ];
 
+//declaring all the variables
 var totalMonths = 0;
 var netTotal = 0;
 var averageChange = 0;
@@ -96,7 +97,7 @@ var monthDiffernce;
 var increaseMonth;
 var decreaseMonth;
 
-// operation for calculating number of months
+// operation for calculating total number of months
 totalMonths = finances.length;
 
 // operation for calculating net profit or loss
@@ -116,6 +117,7 @@ for (var i = 0; i < totalMonths - 1; i++) {
       greatestIncrease = monthDiffernce;
       increaseMonth = finances[i + 1][0];
    }
+
    //calculating greatest decrease in profit/loss
    if (greatestDecrease == 0 || greatestDecrease > monthDiffernce) {
       greatestDecrease = monthDiffernce;

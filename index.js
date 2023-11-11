@@ -88,9 +88,18 @@ var finances = [
 ];
 
 var totalMonths = 0;
+var netTotal = 0;
 
 // operation for calculating number of months
 totalMonths = finances.length;
 
 console.log("Financial Analysis\n------------------");
-console.log("Total Months: ", totalMonths);
+console.log("Total Months: " + totalMonths);
+
+// operation for calculating net profit or loss
+
+for (var i = 0; i < totalMonths; i++) {
+   netTotal += finances[i][1];
+}
+
+console.log("Total: $" + netTotal);

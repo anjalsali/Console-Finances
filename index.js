@@ -89,8 +89,12 @@ var finances = [
 
 var totalMonths = 0;
 var netTotal = 0;
-var monthDiffernce;
 var averageChange = 0;
+var greatestIncrease = 0;
+var greatestDecrease = 0;
+var monthDiffernce;
+var profitMonth;
+var lossMonth;
 
 // operation for calculating number of months
 totalMonths = finances.length;
@@ -109,10 +113,18 @@ console.log("Total: $" + netTotal);
 //operation for calculating average of the changes in profit/loss
 for (var i = 0; i < totalMonths - 1; i++) {
    monthDiffernce = 0;
+
    //calulating profit or loss for each month
    monthDiffernce += finances[i + 1][1] - finances[i][1];
+
+   if (greatestIncrease < monthDiffernce) {
+      greatestIncrease = monthDiffernce;
+      profitMonth = finances[i + 1][0];
+   }
+
    averageChange += monthDiffernce;
 }
 
 // rounding the result to the nearest 100th decimal.
 console.log("Average Change: " + Math.round((averageChange / (totalMonths - 1)) * 100) / 100);
+console.log("Greatest Increase in Profits/Losses: " + profitMonth + " ($" + greatestIncrease + ")");

@@ -93,22 +93,16 @@ var averageChange = 0;
 var greatestIncrease = 0;
 var greatestDecrease = 0;
 var monthDiffernce;
-var profitMonth;
-var lossMonth;
+var increaseMonth;
+var decreaseMonth;
 
 // operation for calculating number of months
 totalMonths = finances.length;
 
-console.log("Financial Analysis\n------------------");
-console.log("Total Months: " + totalMonths);
-
 // operation for calculating net profit or loss
-
 for (var i = 0; i < totalMonths; i++) {
    netTotal += finances[i][1];
 }
-
-console.log("Total: $" + netTotal);
 
 //operation for calculating average of the changes in profit/loss
 for (var i = 0; i < totalMonths - 1; i++) {
@@ -117,14 +111,27 @@ for (var i = 0; i < totalMonths - 1; i++) {
    //calulating profit or loss for each month
    monthDiffernce += finances[i + 1][1] - finances[i][1];
 
-   if (greatestIncrease < monthDiffernce) {
+   //calculating greatest increase in profit/loss
+   if (greatestIncrease == 0 || greatestIncrease < monthDiffernce) {
       greatestIncrease = monthDiffernce;
-      profitMonth = finances[i + 1][0];
+      increaseMonth = finances[i + 1][0];
+   }
+   //calculating greatest decrease in profit/loss
+   if (greatestDecrease == 0 || greatestDecrease > monthDiffernce) {
+      greatestDecrease = monthDiffernce;
+      decreaseMonth = finances[i + 1][0];
    }
 
    averageChange += monthDiffernce;
 }
 
 // rounding the result to the nearest 100th decimal.
-console.log("Average Change: " + Math.round((averageChange / (totalMonths - 1)) * 100) / 100);
-console.log("Greatest Increase in Profits/Losses: " + profitMonth + " ($" + greatestIncrease + ")");
+averageChange = Math.round((averageChange / (totalMonths - 1)) * 100) / 100;
+
+//printing results to the console
+console.log("Financial Analysis\n------------------");
+console.log("Total Months: " + totalMonths);
+console.log("Total: $" + netTotal);
+console.log("Average Change: " + averageChange);
+console.log("Greatest Increase in Profits/Losses: " + increaseMonth + " ($" + greatestIncrease + ")");
+console.log("Greatest Decrease in Profits/Losses: " + decreaseMonth + " ($" + greatestDecrease + ")");
